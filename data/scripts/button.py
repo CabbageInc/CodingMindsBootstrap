@@ -4,37 +4,46 @@ import pygame
 pygame.init()
 
 class Button(pygame.sprite.Sprite):
-    def __init__(self): # Add given properties as parameters
+    def __init__(self, color_on, color_off, sound, x, y): # Add given properties as parameters
         pygame.sprite.Sprite.__init__(self)
         # Initialize properties here
+        self.color_on = color_on
+        self.color_off = color_off
+        self.sound = sound
 
         self.image = pygame.Surface((230, 230))
         self.image.fill(self.color_off)
         self.rect = self.image.get_rect()
         # Assign x, y coordinates to the top left of the sprite
-        self.rect.topleft = ()
+        self.rect.topleft = (x, y)
         self.clicked = False
-        '''
-        Draws button sprite onto pygame window when called
-        '''
-
+        
+    '''
+    Draws button sprite onto pygame window when called
+    '''
     def draw(self, screen):
         # blit image here
-        '''
-        Used to check if given button is clicked/selected by player
-        '''
+        screen.blit(self.image, self.rect.topleft)
         
+    '''
+    Used to check if given button is clicked/selected by player
+    '''
     def selected(self, mouse_pos):
         # Check if button was selected. Pass in mouse_pos.
-        '''
-        Illuminates button selected and plays corresponding sound.
-        Sets button color back to default color after being illuminated.
-        '''
+        if self.rect.collidepoint(mouse_pos): return True
+        else: return False
 
+    '''
+    Illuminates button selected and plays corresponding sound.
+    Sets button color back to default color after being illuminated.
+    '''
     def update(self, screen):
         # Illuminate button by filling color here
         # blit the image here so it is visible to the player
         # Play sound
+        self.image.fill(self.color_on)
+        screen.blit(self.image, (self.rect.x, self.rect.y))
+        self.sound.play()
         pygame.display.update()
         self.image.fill(self.color_off)
         screen.blit(self.image, (self.rect.x, self.rect.y))
