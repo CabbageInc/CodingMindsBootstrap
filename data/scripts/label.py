@@ -7,7 +7,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 class Label():
-    def __init__(self, screen, txt, location, size=(150, 50), bgc=BLACK, fgc=WHITE, font_name="comicsans", font_size=40):
+    def __init__(self, screen, txt, location, size=(150, 50), bgc=BLACK, fgc=WHITE, font_name="comicsans", font_size=28):
         self.txt = txt
         self.size = size
         self.bgc = bgc
@@ -18,7 +18,7 @@ class Label():
         self.surface = pygame.surface.Surface(size)
         self.rect = self.surface.get_rect(topleft=(self.x, self.y))
         
-        self.font = pygame.font.SysFont(font_name, font_size)
+        self.font = pygame.font.Font(font_name, font_size)
         self.txt_surf = self.font.render(self.txt, 1, fgc)
         self.txt_rect = self.txt_surf.get_rect(topleft=self.rect.topleft)
 

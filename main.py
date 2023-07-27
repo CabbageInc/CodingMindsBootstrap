@@ -30,7 +30,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 # HUD Constants
-HUD_FONT = pygame.font.SysFont("comicsans", 40)
+HUD_FONT = os.path.join("data", "assets", "Ldfcomicsans-jj7l.ttf")
 HUD_HEIGHT = 40
 HUD_WIDTH = SCREEN.get_width()
 HUD_BG = pygame.Rect(0, 0, HUD_WIDTH, HUD_HEIGHT)
@@ -62,14 +62,14 @@ def generate_hud(show_reset=False, show_time=False, time_left=""):
 
     pygame.draw.rect(SCREEN, BLACK, HUD_BG)
 
-    streak_text = Label(SCREEN, "Streak: " + str(streak), (5, 5))
+    streak_text = Label(SCREEN, "Streak: " + str(streak), (5, 5), font_name=HUD_FONT)
     streak_text.set_default_size()
 
-    reset_text = Label(SCREEN, "reset", (250, 5), fgc=BLACK)
+    reset_text = Label(SCREEN, "reset", (250, 5), fgc=BLACK, font_name=HUD_FONT)
     reset_text.set_default_size()
     reset_text.x = (SCREEN.get_rect().centerx) - (reset_text.get_width()/2)
 
-    timer_text = Label(SCREEN, "Time: ", (400, 5))
+    timer_text = Label(SCREEN, "Time: ", (400, 5), font_name=HUD_FONT)
     timer_text.set_default_size()
     timer_text.rect.x = SCREEN.get_width() - timer_text.get_width()
     
