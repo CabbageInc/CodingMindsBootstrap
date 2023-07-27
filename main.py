@@ -99,7 +99,7 @@ def player_turn():
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             # button click occured
             # Grab the current position of mouse here
-                pos = pygame.mouse.get_pos() # NEED TO REPLACE
+                pos = pygame.mouse.get_pos()
                 if green.selected(pos): # green button was selected
                     green.update(SCREEN) # illuminate button
                     players_sequence.append("green") # add to player sequence
